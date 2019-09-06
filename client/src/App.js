@@ -2,39 +2,26 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
 import { simpleAction } from './actions/simpleAction';
-
+import { NavLink , Route} from 'react-router-dom'
 
 import './App.css';
-import Button from 'react-bootstrap/Button';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Game from './game/game.js'
-import Block from './block/Block.js'
-
-import {gen} from './utils/blockgen.js'
-
-function Blocks(props) {
-  return (
-    <div style={{maxWidth:"400px", height:"100%"}}>
-    {props.mats.map((mat, idx) => (
-      <div style={{display:"inline-block", margin:"4px"}}>
-        <Block key={idx} mat={mat}/>
-      </div>
-    ))}
-   </div>
-  )
-}
 
 const App = ({ result, simpleAction }) => {
    return (
-    <div>
-      <pre>
-         {
-          JSON.stringify(result)
-         }
-      </pre>
-      <button onClick={simpleAction}>Test redux action</button>
-    </div>
+     <div>
+       <Route path="/home" render={ () => (
+        <h1> Welcome Home </h1>
+      )}/>
+       <Route path="/foobar" render={ () => (
+        <h1> Welcome foobar </h1>
+      )}/>
+       <Route path="/barfoo" render={ () => (
+        <h1> Welcome barfoo </h1>
+      )}/>
+       <NavLink to="/home"> Home </NavLink>
+       <NavLink to="/foobar"> Foobar </NavLink>
+       <NavLink to="/barfoo"> BarFoo </NavLink>
+     </div>
   )
 }
 

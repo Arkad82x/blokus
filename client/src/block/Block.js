@@ -19,6 +19,20 @@ function Cell(props) {
   }
 }
 
+function Blocks(props) {
+  return (
+    <div style={{maxWidth:"400px", height:"100%"}}>
+    {props.mats.map((mat, idx) => (
+      <div style={{display:"inline-block", margin:"4px"}}>
+        <Block key={idx} mat={mat}/>
+      </div>
+    ))}
+   </div>
+  )
+}
+
+
+
 
 class Block extends Component {
   render() {
