@@ -82,4 +82,15 @@ describe("Matrix utility", () => {
       expect(mat.mirror([[0, 1], [0, 0]])).toEqual([[0, 0], [1, 0]])
     })
   })
+
+  describe("outOfBounds", () => {
+    it("returns true if block is out of bounds", () => {
+      expect(mat.outOfBounds([[]], {x:1, y:0})).toEqual(true) 
+    })
+
+    it("return false if pos is inside the matrix", () => {
+      expect(mat.outOfBounds([[1, 0], [1, 0]], {x:1, y:0})).toEqual(false) 
+      
+    })
+  })
 })

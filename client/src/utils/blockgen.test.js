@@ -20,7 +20,7 @@ describe ("block generation", () => {
   it("generates properly for D2", () => {
     const result = gen(2)
     expect(result.length).toEqual(1) 
-    expect(result[0]).toEqual([[1, 1], [0, 0]])
+    expect(result[0]).toEqual([[1, 0], [1, 0]])
   })
 
   it("returns array of blocks for n up to 5", () => {

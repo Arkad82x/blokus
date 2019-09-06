@@ -11,24 +11,21 @@ export function gen(n){
   return genRec(n, mat.init(n), {x:0, y:0}, [])
 }
 
-function genRec(remaining, current, pos, solutions){
-  if(pos.x > current.length || pos.y > current.length) return []
-  if(pos.x < 0 || pos.y < 0) return [] 
+function genRec(remaining, current, pos, solutions) {
+  if(mat.outOfBounds(current, pos)) return []
   if(mat.blocked(current, pos)) return []
 
-  const next = mat.put(current, pos)
+  current = mat.put(current, pos)
 
-  if(mat.includes(solutions, next)) return []
+  if(remaining === 1) return [current]
 
-  if(remaining === 1) return [next]
+  const freePositions = mat.freeAdjacentPositions(current)
+  const nexts = freePositions.map(fpos => genRec(remaining-1, current, fpos, solutions)).flat()
 
   return [
     ...solutions,
-    ...genRec(remaining-1, next, {...pos, x: pos.x+1}, solutions),
-    ...genRec(remaining-1, next, {...pos, x: pos.x-1}, solutions),
-    ...genRec(remaining-1, next, {...pos, y: pos.y+1}, solutions),
-    ...genRec(remaining-1, next, {...pos, y: pos.y-1}, solutions)
-  ].filter((cur, index, self) => {
-    return self.findIndex(m => mat.equal(cur, m) || mat.equal(cur, mat.mirror(m))) === index
-  })
+    ...nexts
+  ].filter((cur, index, self) => 
+    self.findIndex(m => mat.equal(cur, m) || mat.equal(cur, mat.mirror(m))) === index
+  )
 }

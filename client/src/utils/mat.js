@@ -41,3 +41,37 @@ export function mirror(m) {
   }
   return ret
 }
+
+export function outOfBounds(m, pos) {
+  return pos.x < 0 || pos.x >= m.length || pos.y < 0 || pos.y >= m.length
+}
+
+export function freeAdjacentPositions(m) {
+  let result = []
+  for( let x = 0; x<m.length; x++) {
+    for( let y = 0; y<m[x].length; y++) {
+      if(!blocked(m, {x,y})) {
+        //free field
+        if(hasBlockedNeighbor(m, {x, y})) {
+          result.push({x,y})
+        }
+      }
+    }
+  }
+  return result
+}
+
+function hasBlockedNeighbor(m, pos) {
+  return [
+    {x: pos.x-1, y: pos.y},
+    {x: pos.x,   y: pos.y-1},
+    {x: pos.x+1, y: pos.y},
+    {x: pos.x,   y: pos.y+1}
+  ].some( p => !outOfBounds(m, p) && blocked(m, p))
+}
+
+export function isMatrix(m) {
+  const dim = m.length
+  return m.every(col => col.length === dim) 
+          && m.every(col => col.every(number => typeof(number) === "number"))
+}
