@@ -75,3 +75,28 @@ export function isMatrix(m) {
   return m.every(col => col.length === dim) 
           && m.every(col => col.every(number => typeof(number) === "number"))
 }
+
+export function positionsFilter(m, f) {
+  let result = []
+  for(let x = 0; x<m.length; x++) {
+    for(let y = 0; y<m[x].length; y++) {
+      if(f(m[y][x])) result.push({x, y}) 
+    }
+  }
+  return result
+}
+
+export function center(m) {
+  const ones = positionsFilter(m, val => val === 1)
+  if( ones.length === 0 ) {
+    return {
+      x: m.length/2,
+      y: m.length/2
+    }
+  }
+  const sum = ones.reduce((sum, cur) => ({x: sum.x + cur.x, y: sum.y + cur.y}), {x:0, y:0})
+  return {
+    x: sum.x/ones.length,
+    y: sum.y/ones.length
+  }
+}

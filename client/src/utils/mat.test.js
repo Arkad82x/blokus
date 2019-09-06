@@ -93,4 +93,26 @@ describe("Matrix utility", () => {
       
     })
   })
+
+  describe("center", () => {
+    it("returns the middle if all values are zeroes", () => {
+      expect(mat.center(mat.init(3))).toEqual({x:1.5, y:1.5})
+      expect(mat.center(mat.init(4))).toEqual({x:2, y:2})
+    })
+
+    it("calculates center of all ones", () => {
+      const m = [
+        [1, 0],
+        [0, 1]
+      ]
+      expect(mat.center(m)).toEqual({x:0.5, y:0.5})
+
+      const m2 = [
+        [0, 0, 1],
+        [0, 0, 0],
+        [0, 0, 1]
+      ]
+      expect(mat.center(m2)).toEqual({x:2, y:1})
+    })
+  })
 })
