@@ -1,4 +1,9 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux'
+import { simpleAction } from './actions/simpleAction';
+
+
 import './App.css';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
@@ -20,52 +25,23 @@ function Blocks(props) {
   )
 }
 
-class App extends Component {
-  state = {
-    data: null
-  };
-
-  constructor(props) {
-    super(props)
-
-    this.d1 = gen(1)
-    this.d2 = gen(2)
-    this.d3 = gen(3)
-    this.d4 = gen(4)
-    this.d5 = gen(5)
-    this.d6 = gen(6)
-  }
-
-  componentDidMount() {
-      // Call our fetch function below once the component mounts
-    this.callBackendAPI()
-      .then(res => this.setState({ data: res.express }))
-      .catch(err => console.log(err));
-  }
-    // Fetches our GET route from the Express server. (Note the route we are fetching matches the GET route from server.js
-  callBackendAPI = async () => {
-    const response = await fetch('/express_backend');
-    const body = await response.json();
-
-    if (response.status !== 200) {
-      throw Error(body.message) 
-    }
-    return body;
-  };
-
-
-  render() {
-    return (
-      <Row>
-        <Col md="auto"><h3>D1</h3> <Blocks mats={this.d1}/> </Col>
-        <Col md="auto"><h3>D2</h3> <Blocks mats={this.d2}/> </Col>
-        <Col md="auto"><h3>D3</h3> <Blocks mats={this.d3}/> </Col>
-        <Col md="auto"><h3>D4</h3> <Blocks mats={this.d4}/> </Col>
-        <Col md="auto"><h3>D5</h3> <Blocks mats={this.d5}/> </Col>
-        <Col md="auto"><h3>D6</h3> <Blocks mats={this.d6}/> </Col>
-      </Row>
-    );
-  }
+const App = ({ result, simpleAction }) => {
+   return (
+    <div>
+      <pre>
+         {
+          JSON.stringify(result)
+         }
+      </pre>
+      <button onClick={simpleAction}>Test redux action</button>
+    </div>
+  )
 }
 
-export default App;
+const mapStateToProps = state => ({
+  result: state.simpleReducer.result
+})
+
+const mapDispatchToProps = dispatch => bindActionCreators({ simpleAction }, dispatch)
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
