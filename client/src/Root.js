@@ -7,7 +7,7 @@ import App from './App'
 const Root = ({ store }) => (
   <Provider store={store}>
     <Router>
-      <Redirect to="/create" />
+      <Redirect to="/lobby" />
       <Route path="/" component={App} />
     </Router>
   </Provider>

@@ -1,5 +1,5 @@
 import Home from './components/Home'
-import CreateGame from './game/Create'
+import Lobby from './game/Lobby'
 import JoinGame from './game/Join'
 
 export default [
@@ -10,10 +10,11 @@ export default [
     inMenu: true
   },
   {
-    label: "Create Game",
-    path: "/create",
+    label: "New Game",
+    path: "/lobby",
     inMenu: true,
-    component: CreateGame
+    component: Lobby,
+    resolve: () => "foobarProps"
   },
   {
     label: "Join Game",
