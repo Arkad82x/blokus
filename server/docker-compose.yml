@@ -1,0 +1,24 @@
+version: "2"
+services:
+  web:
+    image: node:carbon
+    working_dir: /usr/src/app
+    volumes:
+      - ./web:/usr/src/app
+    command: npm start 
+    ports:
+      - "5000:8080"
+    depends_on:
+    - mongo
+  js_console:
+    build: ./console
+    depends_on:
+    - mongo
+  mongo:
+    image: mongo
+    ports:
+    - "27017:27017"
+    volumes:
+    - data-volume:/data/db
+volumes:
+  data-volume:
