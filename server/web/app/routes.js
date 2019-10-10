@@ -5,7 +5,7 @@ module.exports = function(app, passport) {
 console.log("alive")
     app.get("/api/test", (req, res) => {
         console.log("received")
-        res.json({name: "foobar"})
+        res.json({success: "fuck yea!"})
     })
 
     // show the home page (will also have our login links)
