@@ -2,6 +2,6 @@ import React from 'react'
 
 export default props => {
   return (
-    <div> Footer </div>
+    <div style={{backgroundColor:"cyan"}}> Footer </div>
   )
 }

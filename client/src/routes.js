@@ -1,25 +1,27 @@
-import Home from './components/Home'
-import Lobby from './game/Lobby'
-import JoinGame from './game/Join'
+import Lobby from './components/Lobby'
+import GameBrowser from './components/GameBrowser'
+import Rules from './components/Rules'
+import About from './components/About'
 
 export default [
   {
-    label: "Home",
-    path: "/home",
-    component: Home,
-    inMenu: true
-  },
-  {
-    label: "New Game",
+    label: "Create Game",
     path: "/lobby",
-    inMenu: true,
     component: Lobby,
-    resolve: () => "foobarProps"
   },
   {
     label: "Join Game",
-    path: "/join",
-    inMenu: true,
-    component: JoinGame
+    path: "/game_browser",
+    component: GameBrowser
+  },
+  {
+    label: "Rules",
+    path: "/rules",
+    component: Rules
+  },
+  {
+    label: "About",
+    path: "/about",
+    component: About
   }
 ]
