@@ -15,7 +15,7 @@ export default (props) => {
             width="100"
             height="50"
             className="d-inline-block align-top"
-            alt="React Bootstrap logo"
+            alt="Logo"
           />
         </Navbar.Brand>
       </Navbar>
