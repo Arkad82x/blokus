@@ -6,18 +6,28 @@ import Footer from './components/Footer'
 
 import routes from './routes'
 
+
+
+
+
 const App = () => {
+      function create() {
+         fetch("/api/games/create")
+            .then(a => a.json())
+            .then(a => console.log("CREATE", a))
+            .catch(e => console.error("Server connection test failed"))
+      }
 
-   function handleClick() {
-      fetch("/api/test")
-      .then(a => a.json())
-      .then(a => console.log(a))
-      .catch(e => console.error(e))
-   }
-
-   return (
+      function get() {
+         fetch("/api/games")
+            .then(a => a.json())
+            .then(a => console.log("GET: ", a))
+            .catch(e => console.error("Server connection test failed"))
+      }
+     return (
      <div>
-        <button onClick={handleClick} >request </button>
+        <button onClick={create}>Create</button>
+        <button onClick={get}>Get</button>
         <Header/>
        { routes.map(route => (
           <Route key={route.path} path={route.path} component={route.component} exact />
