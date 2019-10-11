@@ -6,16 +6,6 @@ import { Link } from 'react-router-dom'
 
 import logo from './logo.jpg'
 
-const Navigation = () => (
-  <Nav>
-    { routes.filter(r => r.inMenu).map(({label, path}) => 
-      <Nav.Item key={path}>
-         <Nav.Link as={Link} to={path}>{label}</Nav.Link>
-      </Nav.Item>
-    ) }
-  </Nav>
-)
-
 export default (props) => {
   return (
       <Navbar bg="light" expand="lg">
@@ -28,7 +18,6 @@ export default (props) => {
             alt="React Bootstrap logo"
           />
         </Navbar.Brand>
-        <Navigation />
       </Navbar>
     )
 }
