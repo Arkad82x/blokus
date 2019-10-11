@@ -1,7 +1,7 @@
-import Lobby from './components/Lobby'
-import GameBrowser from './components/GameBrowser'
-import Rules from './components/Rules'
-import About from './components/About'
+import Lobby from './scenes/Lobby'
+import GameBrowser from './scenes/GameBrowser'
+import Rules from './scenes/Rules'
+import About from './scenes/About'
 
 export default [
   {
