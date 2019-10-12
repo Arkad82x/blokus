@@ -8,6 +8,7 @@ services:
     command: npx nodemon server.js 
     ports:
       - "5000:8080"
+      - "5001:5001"
     depends_on:
     - mongo
   js_console:

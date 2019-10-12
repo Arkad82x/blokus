@@ -6,7 +6,9 @@ import './App.css'
 
 import Header from './components/Header/Header'
 import Footer from './components/Footer'
-import Home from './components/Home/Home'
+import Home from './scenes/Home/Home'
+
+import './websocket/lobby'
 
 import routes from './routes'
 
@@ -20,13 +22,15 @@ const AppWrapper = styled.div`
    height:100%;
 `
 
+
+
+
 const App = () => (
    <AppWrapper>
       <Header/>
       <MainContentWrapper>
-         <Route path="/home" component={Home} />
          { routes.map(route => (
-            <Route key={route.path} path={route.path} component={route.component} exact />
+            <Route key={route.path} path={route.path} component={route.component} />
          ))}
       </MainContentWrapper>
       <Footer />

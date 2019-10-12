@@ -10,11 +10,16 @@ var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
 var session      = require('express-session');
 
+var configDB = require('./config/database.js');
 const api = require('./app/api.js'); 
 
-var configDB = require('./config/database.js');
+//create http server
+const httpServer = require('http').createServer(app)
 
-// configuration ===============================================================
+//register websockets on http server
+const wsLobby = require('./websocket/lobby')(httpServer)
+
+// connect to mongodb 
 mongoose.connect(configDB.url, {
     useMongoClient: true
 });
@@ -25,9 +30,9 @@ app.use(cookieParser()); // read cookies (needed for auth)
 app.use(bodyParser.json()); // get information from html forms
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// routes ======================================================================
+// mount routes
 app.use("/api", api)
 
-// launch ======================================================================
-app.listen(port);
+// launch 
+httpServer.listen(port);
 console.log('The magic happens on port ' + port);

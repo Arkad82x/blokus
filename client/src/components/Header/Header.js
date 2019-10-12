@@ -18,6 +18,7 @@ export default (props) => {
             alt="Logo"
           />
         </Navbar.Brand>
+        <Navbar.Text>Play Blokus for free</Navbar.Text>
       </Navbar>
     )
 }
