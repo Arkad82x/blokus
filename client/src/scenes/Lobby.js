@@ -9,13 +9,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 
-import { copyToClipboard } from '../utils/clipboard.js'
-import ShareText from '../components/ShareText'
-
 import LinkButton from '../components/LinkButton'
-import PlayerList from '../components/PlayerList'
-
-import useLobby from '../hooks/useLobby'
 
 import WSLobby from '../websocket/lobby'
 
@@ -36,17 +30,13 @@ const LobbyContainer = () => {
   //error just in case
   const [error, setError] = useState(false)
 
-  const [lobby, setLobby] = useLobby(null)
-
   useEffect(() => {
     if(creating) {
       APILobby.create().then(result => {
-        setLobby(result)
         setLoading(false)
         setCreating(false)
       }).catch( error => {
         console.error(error)
-        setLobby(null)
         setLoading(false)
         setCreating(false)
         setError(true)
@@ -57,13 +47,11 @@ const LobbyContainer = () => {
   useEffect(() => {
     if(loading) {
       APILobby.get(id).then(result => {
-        setLobby(result)
         setLoading(false)
         setCreating(false)
         WSLobby.join(id)
       }).catch( error => {
         console.error(error)
-        setLobby(null)
         setLoading(false)
         setCreating(false)
         setError(true)
@@ -71,20 +59,18 @@ const LobbyContainer = () => {
     }
   }, [])
 
-  if(!loading && !creating && !id && lobby && lobby._id) {
-    console.log(loading, creating, id, lobby)
-    return <Redirect to={`/lobby/${lobby._id}`} />
+  if(!loading && !creating && !id) {
+    console.log(loading, creating, id)
+    return <Redirect to={`/lobby/${42}`} />
   }
 
   return (
-    <Lobby loading={loading} creating={creating} error={error} lobby={lobby}/>
+    <Lobby loading={loading} creating={creating} error={error} lobby={"foobar"}/>
   )
 }
 
 const Lobby = ({ loading, creating, error, ...props}) => {
   console.log(useParams())
-
-  const lobby = useLobby(props.lobby)
 
   if(loading) {
     return <h3> Connecting to Lobby ...</h3>
@@ -112,5 +98,8 @@ const Lobby = ({ loading, creating, error, ...props}) => {
   )
 }
 
-export default LobbyContainer
+const Temp = () => (
+  <h3> Temp</h3>
+)
+export default Temp 
 

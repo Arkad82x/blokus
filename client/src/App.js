@@ -6,11 +6,9 @@ import './App.css'
 
 import Header from './components/Header/Header'
 import Footer from './components/Footer'
-import Home from './scenes/Home/Home'
-
-import './websocket/lobby'
 
 import routes from './routes'
+import io from 'socket.io-client'
 
 const MainContentWrapper = styled.div`
    flex: 1;
@@ -21,9 +19,6 @@ const AppWrapper = styled.div`
    flex-direction: column;
    height:100%;
 `
-
-
-
 
 const App = () => (
    <AppWrapper>

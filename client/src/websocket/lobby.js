@@ -1,9 +1,7 @@
-import io from 'socket.io-client'
 import uuid from 'uuid'
 
 class WSLobby {
     constructor() {
-        this.socket = io("/lobby")
         this.currentLobbyId = null
         this.listeners = []
     }
@@ -22,7 +20,7 @@ class WSLobby {
         if(this.currentLobbyId !== null){
             this.socket.emit('leave', { id: this.currentLobbyId })
         }else{
-            throw "calling leave while not connected is forbidden"
+            throw new Error("calling leave while not connected is forbidden")
         }
     }
 

@@ -1,20 +1,20 @@
 version: "2"
 services:
-  web:
-    image: node:carbon
-    working_dir: /usr/src/app
-    volumes:
-      - ./web:/usr/src/app
-    command: npx nodemon server.js 
-    ports:
-      - "5000:8080"
-      - "5001:5001"
-    depends_on:
-    - mongo
-  js_console:
-    build: ./console
-    depends_on:
-    - mongo
+#  web:
+#    image: node:carbon
+#    working_dir: /usr/src/app
+#    volumes:
+#      - ./web:/usr/src/app
+#    command: npx nodemon server.js 
+#    ports:
+#      - "5000:8080"
+#      - "5001:5001"
+#    depends_on:
+#    - mongo
+#  js_console:
+#    build: ./console
+#    depends_on:
+#    - mongo
   mongo:
     image: mongo
     ports:
