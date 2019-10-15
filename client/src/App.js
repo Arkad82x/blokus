@@ -5,10 +5,7 @@ import styled from 'styled-components'
 import './App.css'
 
 import Header from './components/Header/Header'
-import Footer from './components/Footer'
-
 import routes from './routes'
-import io from 'socket.io-client'
 
 const MainContentWrapper = styled.div`
    flex: 1;
@@ -25,10 +22,9 @@ const App = () => (
       <Header/>
       <MainContentWrapper>
          { routes.map(route => (
-            <Route key={route.path} path={route.path} component={route.component} />
+            <Route key={route.path} exact={route.exact} path={route.path} component={route.component} />
          ))}
       </MainContentWrapper>
-      <Footer />
    </AppWrapper>
 )
 
