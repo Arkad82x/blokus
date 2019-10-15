@@ -29,8 +29,9 @@ const LobbySetup = ({ history}) => {
         lobby.create({
             name: event.target.gameName.value,
             password: event.target.password.value
-        }).then(({ id }) => {
-            history.push(`/lobby/${id}`)
+        }).then((result) => {
+            const {_id} = result
+            history.push(`/lobby/${_id}`)
         }).catch(() => {
             //TODO now being used yet
             setError(true)
