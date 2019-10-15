@@ -1,12 +1,12 @@
 import axios from 'axios'
 
-export const APIgame = {
+export const game = {
   init: () => get('./api/game/init'),
   shareURL: (gameId) => get(`./api/game/${gameId}/shareURL`)
 }
 
-export const APILobby = {
-  create: () => post('/api/lobby'),
+export const lobby = {
+  create: ({ name, password }) => post('/api/lobby', {name, password}),
   get: (id) => get('/api/lobby', { id })
 }
 
@@ -22,6 +22,7 @@ async function get(url, params={}) {
 }
 
 async function post(url, params={}) {
+  console.log("POST: ", url, params)
   try {
     const result = await axios.post(url, params )
     return result.data

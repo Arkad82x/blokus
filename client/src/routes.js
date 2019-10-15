@@ -1,9 +1,10 @@
 //import Lobby from './scenes/Lobby'
-import Chat from './components/Chat'
 import GameBrowser from './scenes/GameBrowser'
 import Rules from './scenes/Rules'
 import About from './scenes/About'
 import Home from './scenes/Home/Home'
+import LobbySetup from './scenes/LobbySetup'
+import Lobby from './scenes/Lobby'
 
 const routes = [
   {
@@ -13,8 +14,13 @@ const routes = [
   {
     label: "Create Game",
     path: "/lobby",
-    component: Chat,
+    exact: true,
+    component: LobbySetup,
     inMenu: true
+  },
+  {
+    path: "/lobby/:id",
+    component: Lobby
   },
   {
     label: "Join Game",
