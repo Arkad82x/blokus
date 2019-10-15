@@ -6,6 +6,8 @@ import InputGroup from 'react-bootstrap/InputGroup'
 import Button from 'react-bootstrap/Button'
 
 import TextInput from './TextInput'
+import Time from './Time'
+
 import useChat from '../hooks/useChat'
 
 const Footer = styled(Card.Footer)`
@@ -63,14 +65,6 @@ const Chat = ({ messages=[], send, validate=(text) => text.length > 0, error}) =
                 </InputGroup>
             </Footer>
         </Card>
-    )
-}
-
-const Time = ({ date }) => {
-    return (
-        <div>
-            { date.toLocaleTimeString() }
-        </div>
     )
 }
 
