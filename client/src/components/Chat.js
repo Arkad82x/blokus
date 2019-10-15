@@ -39,7 +39,7 @@ const Chat = ({ messages=[], send, validate=(text) => text.length > 0, error}) =
     }
 
     return (
-        <Card variant="light" style={{display:"flex", flexDirection: "column", height:"100%"}}>
+        <Card variant="light" style={{display:"flex", flexDirection: "column", height:"100%", flex:"1"}}>
             <Card.Header> Chatroom </Card.Header>
             <Card.Body style={{flex: "1"}}>
                 { messages.map( ({ user, text, sentAt }, idx) => 
